@@ -7,13 +7,14 @@ import { createClient } from '@/lib/supabase/client'
 import { cn } from '@/lib/utils'
 import {
   LayoutDashboard, ArrowLeftRight, Target, BarChart2,
-  History, LogOut, User, Wallet, Settings,
+  History, LogOut, Wallet, Settings, LineChart,
 } from 'lucide-react'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/dashboard/transactions', label: 'Transações', icon: ArrowLeftRight },
+  { href: '/dashboard/investments', label: 'Investimentos', icon: LineChart },
   { href: '/dashboard/budgets', label: 'Orçamentos', icon: Wallet },
   { href: '/dashboard/goals', label: 'Metas', icon: Target },
   { href: '/dashboard/charts', label: 'Gráficos', icon: BarChart2 },
@@ -51,7 +52,7 @@ export default function Sidebar({ user }: { user: SupabaseUser }) {
         </Link>
       </div>
 
-      <nav className="flex-1 p-3 space-y-0.5">
+      <nav className="flex-1 p-3 space-y-0.5 overflow-y-auto">
         {navItems.map(({ href, label, icon: Icon }) => {
           const isActive = pathname === href
           return (
