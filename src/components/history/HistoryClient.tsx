@@ -23,6 +23,7 @@ export default function HistoryClient({ transactions, summaries: initialSummarie
   const [loadingMonth, setLoadingMonth] = useState<number | null>(null)
   const [generating, setGenerating] = useState(false)
   const [exportingPdf, setExportingPdf] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const monthlyData = useMemo(() => {
     return Array.from({ length: 12 }, (_, i) => {
@@ -45,18 +46,25 @@ export default function HistoryClient({ transactions, summaries: initialSummarie
   async function generateSummary(month: number) {
     setGenerating(true)
     setLoadingMonth(month)
-    const res = await fetch('/api/summary', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ month, year }),
-    })
-    const data = await res.json()
-    if (data.summary) {
-      setSummaries(prev => {
-        const existing = prev.find(s => s.month === month)
-        if (existing) return prev.map(s => s.month === month ? { ...s, summary_text: data.summary } : s)
-        return [...prev, { id: Date.now().toString(), user_id: userId, month, year, summary_text: data.summary, generated_at: new Date().toISOString(), ...data.stats }]
+    setError(null)
+    try {
+      const res = await fetch('/api/summary', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ month, year }),
       })
+      const data = await res.json()
+      if (!res.ok) {
+        setError(data.error || 'Erro ao gerar resumo. Tente novamente.')
+      } else if (data.summary) {
+        setSummaries(prev => {
+          const existing = prev.find(s => s.month === month)
+          if (existing) return prev.map(s => s.month === month ? { ...s, summary_text: data.summary } : s)
+          return [...prev, { id: Date.now().toString(), user_id: userId, month, year, summary_text: data.summary, generated_at: new Date().toISOString(), ...data.stats }]
+        })
+      }
+    } catch {
+      setError('Erro de conexão. Verifique sua internet e tente novamente.')
     }
     setGenerating(false)
     setLoadingMonth(null)
@@ -228,6 +236,11 @@ export default function HistoryClient({ transactions, summaries: initialSummarie
                 <Brain className="w-10 h-10 mb-3 opacity-30" />
                 <p className="text-sm mb-1">Nenhum resumo gerado ainda</p>
                 <p className="text-xs">Clique em "Gerar resumo com IA" para analisar este mês</p>
+              </div>
+            )}
+            {error && (
+              <div className="mt-3 p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
+                <p className="text-sm text-red-400">{error}</p>
               </div>
             )}
           </div>
