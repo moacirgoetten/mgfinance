@@ -1,8 +1,8 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
-import { GoogleGenAI } from '@google/genai'
+import Groq from 'groq-sdk'
 
-const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! })
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
 export async function POST(request: Request) {
   const supabase = await createClient()
@@ -69,11 +69,12 @@ Por favor, escreva um resumo financeiro mensal com:
 Use linguagem amigável, direta e motivacional. Seja específico com os números. Não use markdown complexo, apenas títulos em negrito e bullet points simples.`
 
   try {
-    const result = await genAI.models.generateContent({
-      model: 'gemini-1.5-flash',
-      contents: prompt,
+    const completion = await groq.chat.completions.create({
+      model: 'llama-3.1-8b-instant',
+      messages: [{ role: 'user', content: prompt }],
+      max_tokens: 1500,
     })
-    const summaryText = result.text ?? ''
+    const summaryText = completion.choices[0]?.message?.content ?? ''
 
     await supabase.from('monthly_summaries').upsert({
       user_id: user.id, month, year, summary_text: summaryText,
