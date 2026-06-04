@@ -1,8 +1,8 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
-import { GoogleGenerativeAI } from '@google/generative-ai'
+import { GoogleGenAI } from '@google/genai'
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
+const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! })
 
 export async function POST(request: Request) {
   const supabase = await createClient()
@@ -69,9 +69,11 @@ Por favor, escreva um resumo financeiro mensal com:
 Use linguagem amigável, direta e motivacional. Seja específico com os números. Não use markdown complexo, apenas títulos em negrito e bullet points simples.`
 
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
-    const result = await model.generateContent(prompt)
-    const summaryText = result.response.text()
+    const result = await genAI.models.generateContent({
+      model: 'gemini-2.0-flash',
+      contents: prompt,
+    })
+    const summaryText = result.text ?? ''
 
     await supabase.from('monthly_summaries').upsert({
       user_id: user.id, month, year, summary_text: summaryText,
