@@ -208,12 +208,12 @@ function SummaryCard({ label, value, icon, color, highlight }: {
     indigo: 'text-blue-400',
   }
   return (
-    <div className={`bg-[#0a1628]/80 border rounded-2xl p-4 ${highlight ? 'border-blue-500/30' : 'border-[#1a3a5c]/60'}`}>
-      <div className="flex items-center justify-between mb-3">
-        <span className="text-xs text-slate-400 font-medium">{label}</span>
-        {icon}
+    <div className={`bg-[#0a1628]/80 border rounded-2xl p-3 md:p-4 overflow-hidden min-w-0 ${highlight ? 'border-blue-500/30' : 'border-[#1a3a5c]/60'}`}>
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-[10px] md:text-xs text-slate-400 font-medium truncate mr-1">{label}</span>
+        <span className="shrink-0">{icon}</span>
       </div>
-      <p className={`text-xl font-bold ${colorMap[color]}`}>
+      <p className={`text-base md:text-xl font-bold ${colorMap[color]} truncate`}>
         {formatCurrency(value)}
       </p>
     </div>

@@ -167,15 +167,15 @@ export default function TransactionsClient({ transactions: initial, month, year,
       </div>
 
       {/* Stats bar */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-3 gap-2 md:gap-4 mb-6">
         {[
           { label: 'Entradas', value: stats.income, color: 'text-green-400' },
           { label: 'Gastos', value: stats.expenses, color: 'text-red-400' },
           { label: 'Investimentos', value: stats.investments, color: 'text-blue-400' },
         ].map(s => (
-          <div key={s.label} className="bg-[#0a1628]/80 border border-[#1a3a5c]/60 rounded-xl p-4">
-            <p className="text-xs text-slate-400 mb-1">{s.label}</p>
-            <p className={`text-lg font-bold ${s.color}`}>{formatCurrency(s.value)}</p>
+          <div key={s.label} className="bg-[#0a1628]/80 border border-[#1a3a5c]/60 rounded-xl p-2 md:p-4 overflow-hidden min-w-0">
+            <p className="text-[10px] md:text-xs text-slate-400 mb-1 truncate">{s.label}</p>
+            <p className={`text-sm md:text-lg font-bold ${s.color} truncate`}>{formatCurrency(s.value)}</p>
           </div>
         ))}
       </div>
@@ -270,14 +270,14 @@ export default function TransactionsClient({ transactions: initial, month, year,
       {/* Transaction Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4 bg-black/60 backdrop-blur-sm">
-          <div className="bg-[#0a1628] border border-[#1a3a5c]/60 rounded-2xl w-full max-w-md px-2 md:px-0">
-            <div className="flex items-center justify-between p-5 border-b border-[#1a3a5c]/60">
+          <div className="bg-[#0a1628] border border-[#1a3a5c]/60 rounded-t-2xl md:rounded-2xl w-full md:max-w-md flex flex-col max-h-[92vh]">
+            <div className="flex items-center justify-between p-5 border-b border-[#1a3a5c]/60 shrink-0">
               <h2 className="font-semibold text-white">{editingId ? 'Editar transação' : 'Nova transação'}</h2>
               <button onClick={closeModal} className="text-slate-400 hover:text-white">
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <form onSubmit={handleSubmit} className="p-5 space-y-4">
+            <form onSubmit={handleSubmit} className="p-5 space-y-4 overflow-y-auto flex-1">
               <div className="grid grid-cols-2 gap-3">
                 <div className="col-span-2">
                   <label className="block text-xs font-medium text-slate-400 mb-1.5">Descrição</label>
