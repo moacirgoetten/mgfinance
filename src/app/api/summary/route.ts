@@ -69,7 +69,7 @@ Por favor, escreva um resumo financeiro mensal com:
 Use linguagem amigável, direta e motivacional. Seja específico com os números. Não use markdown complexo, apenas títulos em negrito e bullet points simples.`
 
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' })
     const result = await model.generateContent(prompt)
     const summaryText = result.response.text()
 
@@ -80,8 +80,9 @@ Use linguagem amigável, direta e motivacional. Seja específico com os números
     }, { onConflict: 'user_id,month,year' })
 
     return NextResponse.json({ summary: summaryText, stats: { income, fixed, variable, investments, balance } })
-  } catch (error) {
-    console.error('Gemini error:', error)
-    return NextResponse.json({ error: 'Erro ao gerar resumo. Verifique a chave da API.' }, { status: 500 })
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error)
+    console.error('Gemini error:', msg)
+    return NextResponse.json({ error: `Erro ao gerar resumo: ${msg}` }, { status: 500 })
   }
 }
