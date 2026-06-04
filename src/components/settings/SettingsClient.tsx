@@ -160,7 +160,7 @@ export default function SettingsClient({ user, profile }: Props) {
                 onChange={e => setSalaryDay(e.target.value)}
                 className="w-full px-3 py-2 bg-[#0d1f3c] border border-slate-600 rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                {Array.from({ length: 28 }, (_, i) => i + 1).map(d => (
+                {Array.from({ length: 31 }, (_, i) => i + 1).map(d => (
                   <option key={d} value={d}>
                     Todo dia {d}
                   </option>
