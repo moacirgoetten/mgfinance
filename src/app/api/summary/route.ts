@@ -69,7 +69,7 @@ Por favor, escreva um resumo financeiro mensal com:
 Use linguagem amigável, direta e motivacional. Seja específico com os números. Não use markdown complexo, apenas títulos em negrito e bullet points simples.`
 
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' })
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
     const result = await model.generateContent(prompt)
     const summaryText = result.response.text()
 
