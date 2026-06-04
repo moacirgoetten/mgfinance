@@ -200,8 +200,8 @@ export default function GoalsClient({ goals: initial, userId }: Props) {
       )}
 
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4 bg-black/60 backdrop-blur-sm">
-          <div className="bg-[#0a1628] border border-[#1a3a5c]/60 rounded-2xl w-full max-w-md px-2 md:px-0">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="bg-[#0a1628] border border-[#1a3a5c]/60 rounded-2xl w-full max-w-md flex flex-col" style={{ maxHeight: 'calc(100dvh - 120px)' }}>
             <div className="flex items-center justify-between p-5 border-b border-[#1a3a5c]/60">
               <h2 className="font-semibold text-white">{editingId ? 'Editar meta' : 'Nova meta'}</h2>
               <button onClick={closeModal}><X className="w-5 h-5 text-slate-400 hover:text-white" /></button>
