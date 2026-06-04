@@ -81,10 +81,10 @@ export default function BudgetsClient({ transactions, budgets: initialBudgets, m
   }
 
   return (
-    <div className="p-6 max-w-3xl">
+    <div className="p-4 md:p-6 max-w-3xl">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-white">Orçamentos</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-white">Orçamentos</h1>
           <div className="flex items-center gap-1 mt-1">
             <button onClick={() => navigateMonth(-1)} className="p-1 hover:bg-[#0d1f3c] rounded transition text-slate-400 hover:text-white">
               <ChevronLeft className="w-4 h-4" />

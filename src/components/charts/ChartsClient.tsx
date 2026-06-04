@@ -103,9 +103,9 @@ export default function ChartsClient({ transactions, month, year }: Props) {
   }
 
   return (
-    <div className="p-6 max-w-5xl">
+    <div className="p-4 md:p-6 max-w-5xl">
       <div className="flex items-center gap-3 mb-6">
-        <h1 className="text-2xl font-bold text-white">Gráficos</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-white">Gráficos</h1>
         <div className="flex items-center gap-1 ml-2">
           <button onClick={() => navigateMonth(-1)} className="p-1.5 hover:bg-[#0d1f3c] rounded transition text-slate-400 hover:text-white">
             <ChevronLeft className="w-4 h-4" />

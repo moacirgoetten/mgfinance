@@ -114,9 +114,9 @@ export default function HistoryClient({ transactions, summaries: initialSummarie
   const selectedSummary = selectedMonth ? summaries.find(s => s.month === selectedMonth) : null
 
   return (
-    <div className="p-6 max-w-5xl">
+    <div className="p-4 md:p-6 max-w-5xl">
       <div className="flex items-center gap-4 mb-6">
-        <h1 className="text-2xl font-bold text-white">Histórico anual</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-white">Histórico anual</h1>
         <div className="flex items-center gap-1">
           <button onClick={() => router.push(`/dashboard/history?year=${year - 1}`)} className="p-1.5 hover:bg-[#0d1f3c] rounded transition text-slate-400 hover:text-white">
             <ChevronLeft className="w-4 h-4" />

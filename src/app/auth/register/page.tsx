@@ -47,7 +47,7 @@ export default function RegisterPage() {
   if (success) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#050a14] via-[#0a1628] to-[#050a14] flex items-center justify-center p-4">
-        <div className="w-full max-w-md text-center bg-[#0a1628]/80 backdrop-blur border border-[#1a3a5c]/60 rounded-2xl p-8">
+        <div className="w-full max-w-md text-center bg-[#0a1628]/80 backdrop-blur border border-[#1a3a5c]/60 rounded-2xl p-5 md:p-8">
           <div className="w-14 h-14 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
             <TrendingUp className="w-7 h-7 text-green-400" />
           </div>
@@ -68,18 +68,18 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#050a14] via-[#0a1628] to-[#050a14] flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-md px-2 md:px-0">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-3">
             <div className="p-2 bg-blue-600 rounded-xl">
               <TrendingUp className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-white">MGFinance</span>
+            <span className="text-xl md:text-2xl font-bold text-white">MGFinance</span>
           </div>
           <p className="text-slate-400 text-sm">Seu gestor financeiro inteligente</p>
         </div>
 
-        <div className="bg-[#0a1628]/80 backdrop-blur border border-[#1a3a5c]/60 rounded-2xl p-8">
+        <div className="bg-[#0a1628]/80 backdrop-blur border border-[#1a3a5c]/60 rounded-2xl p-5 md:p-8">
           <h1 className="text-xl font-semibold text-white mb-6">Criar conta</h1>
 
           <form onSubmit={handleRegister} className="space-y-4">

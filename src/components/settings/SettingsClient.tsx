@@ -44,8 +44,8 @@ export default function SettingsClient({ user, profile }: Props) {
   }
 
   return (
-    <div className="p-6 max-w-xl">
-      <h1 className="text-2xl font-bold text-white mb-6">Configurações</h1>
+    <div className="p-4 md:p-6 max-w-xl">
+      <h1 className="text-xl md:text-2xl font-bold text-white mb-6">Configurações</h1>
 
       <form onSubmit={handleSave} className="space-y-5">
         {/* Perfil */}

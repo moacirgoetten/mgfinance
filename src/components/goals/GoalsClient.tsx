@@ -87,9 +87,9 @@ export default function GoalsClient({ goals: initial, userId }: Props) {
   const completed = goals.filter(g => g.is_completed)
 
   return (
-    <div className="p-6 max-w-4xl">
+    <div className="p-4 md:p-6 max-w-4xl">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-white">Metas financeiras</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-white">Metas financeiras</h1>
         <button
           onClick={() => setShowModal(true)}
           className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium px-4 py-2.5 rounded-lg transition"
@@ -200,8 +200,8 @@ export default function GoalsClient({ goals: initial, userId }: Props) {
       )}
 
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="bg-[#0a1628] border border-[#1a3a5c]/60 rounded-2xl w-full max-w-md">
+        <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4 bg-black/60 backdrop-blur-sm">
+          <div className="bg-[#0a1628] border border-[#1a3a5c]/60 rounded-2xl w-full max-w-md px-2 md:px-0">
             <div className="flex items-center justify-between p-5 border-b border-[#1a3a5c]/60">
               <h2 className="font-semibold text-white">{editingId ? 'Editar meta' : 'Nova meta'}</h2>
               <button onClick={closeModal}><X className="w-5 h-5 text-slate-400 hover:text-white" /></button>

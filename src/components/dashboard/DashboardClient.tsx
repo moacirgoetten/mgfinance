@@ -40,10 +40,10 @@ export default function DashboardClient({ transactions, budgets, goals, month, y
   const greeting = hour < 12 ? 'Bom dia' : hour < 18 ? 'Boa tarde' : 'Boa noite'
 
   return (
-    <div className="p-6 space-y-6 max-w-6xl">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-6 max-w-6xl">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">{greeting}, {userName.split(' ')[0]}!</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-white">{greeting}, {userName.split(' ')[0]}!</h1>
           <p className="text-slate-400 text-sm mt-0.5">{getMonthName(month)} de {year}</p>
         </div>
         <Link
