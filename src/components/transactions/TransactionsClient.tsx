@@ -39,6 +39,10 @@ const EMPTY_FORM = {
 export default function TransactionsClient({ transactions: initial, month, year, userId, openNew }: Props) {
   const router = useRouter()
   const [transactions, setTransactions] = useState<Transaction[]>(initial)
+
+  useEffect(() => {
+    setTransactions(initial)
+  }, [initial])
   const [showModal, setShowModal] = useState(openNew)
   const [editingId, setEditingId] = useState<string | null>(null)
   const [form, setForm] = useState(EMPTY_FORM)
@@ -78,6 +82,7 @@ export default function TransactionsClient({ transactions: initial, month, year,
     if (m > 12) { m = 1; y++ }
     if (m < 1) { m = 12; y-- }
     router.push(`/dashboard/transactions?month=${m}&year=${y}`)
+    router.refresh()
   }
 
   function openEdit(t: Transaction) {
